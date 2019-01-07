@@ -24,7 +24,7 @@ public class Database {
 		statement = connessione.createStatement();
 	}
 	
-	private ResultSet eseguiQuery(String str) throws SQLException {
+	public ResultSet eseguiQuery(String str) throws SQLException {
 		result = statement.executeQuery(str);
 		return result;
 	}
