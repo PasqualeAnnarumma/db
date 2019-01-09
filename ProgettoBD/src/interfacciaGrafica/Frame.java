@@ -56,6 +56,7 @@ public class Frame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				body.removeAll();
 				body.repaint();
+				body.add(creaMenu(), BorderLayout.NORTH);
 				body.add(creaTabella(database.searchQuery(combo.getSelectedItem().toString()).getQuery()));
 				body.revalidate();
 				body.repaint();
@@ -64,6 +65,12 @@ public class Frame extends JFrame {
 		
 		p.add(combo);
 		p.add(button);
+		body.add(creaMenu(), BorderLayout.NORTH);
+		body.add(p, BorderLayout.CENTER);
+		return body;
+	}
+	
+	public JMenuBar creaMenu() {
 		JMenuBar menu = new JMenuBar();
 		JMenu file = new JMenu("File");
 		JMenu aggiungi = new JMenu("Aggiungi");
@@ -100,9 +107,7 @@ public class Frame extends JFrame {
 		menu.add(file);
 		file.add(aggiungi);
 		aggiungi.add(item);
-		body.add(menu, BorderLayout.NORTH);
-		body.add(p, BorderLayout.CENTER);
-		return body;
+		return menu;
 	}
 	
 	public JPanel creaTabella(String query) {
