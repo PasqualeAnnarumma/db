@@ -81,7 +81,7 @@ public class FrameAssicurazione extends JFrame {
 				{
 					try {
 						database.aggiungi("ASSICURAZIONE", "NumeroPratica", "P_Iva", "Nome", "VeicoloAssicurato", "Scadenza", "Premio", NumeroPratica.getText(), P_Iva.getText(), Nome.getText(), VeicoloAssicurato.getText(), scadenza.getText(), premio.getText());
-						JOptionPane.showMessageDialog(null, "Relazione aggiunta con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Assicurazione aggiunta con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRORE!", JOptionPane.ERROR_MESSAGE);
 					}

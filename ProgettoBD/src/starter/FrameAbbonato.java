@@ -56,7 +56,7 @@ public class FrameAbbonato extends JFrame{
 				{
 					try {
 						database.aggiungi("ABBONATO", "N_Tessera", "CF", NTessera.getText(), CF.getText());
-						JOptionPane.showMessageDialog(null, "Relazione aggiunta con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Abbonato aggiunto con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRORE!", JOptionPane.ERROR_MESSAGE);
 					}

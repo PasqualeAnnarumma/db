@@ -21,6 +21,11 @@ import database.Database;
 import query.Query;
 import starter.FrameAbbonato;
 import starter.FrameAssicurazione;
+import starter.FrameAutovettura;
+import starter.FrameCliente;
+import starter.FrameDeposito;
+import starter.FrameDipendente;
+import starter.FrameDitta;
 
 public class Frame extends JFrame {
 	
@@ -77,22 +82,90 @@ public class Frame extends JFrame {
 		JMenu file = new JMenu("File");
 		JMenu aggiungi = new JMenu("Aggiungi");
 		JMenuItem item = new JMenuItem("Aggiungi deposito");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameDeposito frame = new FrameDeposito(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
-		item = new JMenuItem("Aggiungi cliente");		
+		item = new JMenuItem("Aggiungi cliente");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameCliente frame = new FrameCliente(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi dipendente");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameDipendente frame = new FrameDipendente(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi veicolo");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi autovettura");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameAutovettura frame = new FrameAutovettura(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi motociclo");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi relazione noleggiato");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi ditta manutenzione");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameDitta frame = new FrameDitta(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi manutiene");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi assicurazione");
 		
@@ -105,6 +178,13 @@ public class Frame extends JFrame {
 		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi viaggio");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi abbonato");
 		
@@ -117,10 +197,31 @@ public class Frame extends JFrame {
 		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi occasionale");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi pagamento");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi recapito");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		aggiungi.add(item);
 		menu.add(file);
 		file.add(aggiungi);
