@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,7 +33,7 @@ public class FrameOccasionale extends JFrame{
 	
 	public JPanel createBody() {
 		JPanel body = new JPanel();
-		body.setLayout(new GridLayout(3, 2));
+		body.setLayout(new GridLayout(2, 2));
 		JPanel p = new JPanel();
 		p.add(CF);
 		JPanel p2 = new JPanel();
@@ -50,7 +49,7 @@ public class FrameOccasionale extends JFrame{
 				{
 					try {
 						database.aggiungi("OCCASIONALE", "CF", CF.getText());
-						JOptionPane.showMessageDialog(null, "Relazione aggiunta con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Occasionale aggiunto con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRORE!", JOptionPane.ERROR_MESSAGE);
 					}

@@ -4,14 +4,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
 import database.Database;
 
 public class FrameRelazioneNoleggiato extends JFrame{
@@ -19,11 +17,13 @@ public class FrameRelazioneNoleggiato extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private JTextField CodiceFiscale;
 	private JTextField Targa;
+	private JTextField DataNoleggio;
 	private Database database;
 	
 	public FrameRelazioneNoleggiato(Database db) {
 		super("Aggiungi relazione NoleggiatoDa");
 		CodiceFiscale = new JTextField(20);
+		DataNoleggio = new JTextField(20);
 		Targa = new JTextField(20);
 		database = db;
 		setLocation(500, 100);
@@ -36,27 +36,31 @@ public class FrameRelazioneNoleggiato extends JFrame{
 	
 	public JPanel createBody() {
 		JPanel body = new JPanel();
-		body.setLayout(new GridLayout(3, 2));
+		body.setLayout(new GridLayout(4, 2));
 		JPanel p = new JPanel();
 		p.add(CodiceFiscale);
 		JPanel p2 = new JPanel();
 		p2.add(Targa);
 		JPanel p3 = new JPanel();
-		p3.add(new JLabel("Partita Iva: "));
+		p3.add(new JLabel("Codice fiscale: "));
 		JPanel p4 = new JPanel();
 		p4.add(new JLabel("Targa: "));
+		JPanel panelData = new JPanel();
+		panelData.add(new JLabel("Data noleggio: "));
+		JPanel textData = new JPanel();
+		textData.add(DataNoleggio);
 		
 		JPanel buttonPanel = new JPanel();
 		JButton button = new JButton("Inserisci");
 		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (CodiceFiscale.getText().equals("") || Targa.getText().equals(""))
+				if (CodiceFiscale.getText().equals("") || Targa.getText().equals("") || DataNoleggio.getText().equals(""))
 					JOptionPane.showMessageDialog(null, "Inserire tutti i campi", "ERRORE!", JOptionPane.ERROR_MESSAGE);
 				else
 				{
 					try {
-						database.aggiungi("MANUTIENE", "CodiceFiscale", "Targa", CodiceFiscale.getText(), Targa.getText());
+						database.aggiungi("NOLEGGIATO_DA", "Targa", "CF", "Data_Noleggio", Targa.getText(), CodiceFiscale.getText(), DataNoleggio.getText());
 						JOptionPane.showMessageDialog(null, "Relazione aggiunta con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRORE!", JOptionPane.ERROR_MESSAGE);
@@ -71,6 +75,8 @@ public class FrameRelazioneNoleggiato extends JFrame{
 		body.add(p2);
 		body.add(p3);
 		body.add(p);
+		body.add(panelData);
+		body.add(textData);
 		body.add(buttonPanel);
 		return body;
 	}

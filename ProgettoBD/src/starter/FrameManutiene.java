@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -56,7 +55,7 @@ public class FrameManutiene extends JFrame{
 				else
 				{
 					try {
-						database.aggiungi("MANUTIENE", "PartitaIva", "Targa", PartitaIva.getText(), Targa.getText());
+						database.aggiungi("MANUTIENE", "P_IVA", "Targa", PartitaIva.getText(), Targa.getText());
 						JOptionPane.showMessageDialog(null, "Relazione aggiunta con successo", "SUCCESSO!", JOptionPane.INFORMATION_MESSAGE);
 					} catch (SQLException e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage(), "ERRORE!", JOptionPane.ERROR_MESSAGE);

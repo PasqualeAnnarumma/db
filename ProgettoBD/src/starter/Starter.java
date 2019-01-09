@@ -15,7 +15,7 @@ public class Starter {
 	{
 		String nomedb = "takeyourcar";
 		String user = "root";
-		String pass = "";
+		String pass = "n4pl3s1997";
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Class.forName("com.mysql.jdbc.Driver");
@@ -85,6 +85,8 @@ public class Starter {
 				"\r\n" + 
 				"");
 		Query q24 = new Query("Tutti i depositi", "SELECT * FROM DEPOSITO");
+		Query q25 = new Query("Relazioni manutiene", "SELECT * FROM MANUTIENE");
+		Query q26 = new Query("Tutti i noleggi", "SELECT * FROM NOLEGGIATO_DA");
 		
 		db.addQuery(q1);
 		db.addQuery(q2);
@@ -110,13 +112,8 @@ public class Starter {
 		db.addQuery(q22);
 		db.addQuery(q23);
 		db.addQuery(q24);
-		
-		/*try {
-			db.aggiungi("DEPOSITO", "Codice", "Comune", "Regione", "Indirizzo", "Capienza", "NumeroVeicoli", "5", "Agnano", "Campania", "Via agno 5", "23450", "20000");
-			db.aggiungi("DIPENDENTE", "CF", "Nome", "Cognome", "via", "Numero", "dataNascita", "Gestisce", "FFEDRG56C87T345S", "Pino", "Pinetto", "Via dei pini", "5", "1970/01/09", "5");
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}*/
+		db.addQuery(q25);
+		db.addQuery(q26);
 		
 		Frame frame = new Frame(db);
 		frame.setVisible(true);

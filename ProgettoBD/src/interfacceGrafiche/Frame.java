@@ -26,6 +26,14 @@ import starter.FrameCliente;
 import starter.FrameDeposito;
 import starter.FrameDipendente;
 import starter.FrameDitta;
+import starter.FrameManutiene;
+import starter.FrameMotociclo;
+import starter.FrameOccasionale;
+import starter.FramePagamento;
+import starter.FrameRecapito;
+import starter.FrameRelazioneNoleggiato;
+import starter.FrameVeicolo;
+import starter.FrameViaggio;
 
 public class Frame extends JFrame {
 	
@@ -115,7 +123,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameVeicolo frame = new FrameVeicolo(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -134,7 +143,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameMotociclo frame = new FrameMotociclo(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -143,7 +153,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameRelazioneNoleggiato frame = new FrameRelazioneNoleggiato(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -162,7 +173,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameManutiene frame = new FrameManutiene(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -181,7 +193,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameViaggio frame = new FrameViaggio(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -200,7 +213,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameOccasionale frame = new FrameOccasionale(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -209,7 +223,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FramePagamento frame = new FramePagamento(database);
+				frame.setVisible(true);
 			}
 		});
 		
@@ -218,7 +233,8 @@ public class Frame extends JFrame {
 		
 		item.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrameRecapito frame = new FrameRecapito(database);
+				frame.setVisible(true);
 			}
 		});
 		
