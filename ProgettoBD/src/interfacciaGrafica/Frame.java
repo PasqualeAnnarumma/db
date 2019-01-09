@@ -1,64 +1,88 @@
 package interfacciaGrafica;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import database.Database;
+import query.Query;
 
 public class Frame extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	private final String TUTTIIDIPENDENTI = "SELECT * FROM DIPENDENTE";
-	private final String TUTTIICLIENTI = "SELECT * FROM CLIENTE";
-	private final String TUTTIIVEICOLI = "SELECT * FROM VEICOLO";
-	private final String TUTTELEAUTOVETTURE = "SELECT * FROM AUTOVETTURA";
-	private final String TUTTIIMOTOCICLI = "SELECT * FROM MOTOCICLO";
-	private final String TUTTELEDITTE = "SELECT * FROM DITTA_MANUTENZIONE";
-	private final String TUTTIGLIABBONATI = "SELECT * FROM ABBONATO";
-	private final String TUTTIGLIOCCASONALI = "SELECT * FROM OCCASIONALE";
-	private final String TUTTIIPAGAMENTI = "SELECT * FROM PAGAMENTO";
-	private final String TUTTIIVIAGGI = "SELECT * FROM VIAGGIO;";
-	private final String TUTTELEASSICURAZIONI = "SELECT * FROM ASSICURAZIONE";
-	private final String TUTTIIRECAPITI = "SELECT * FROM RECAPITO";
+	private JComboBox<Query> combo;
 	private Database database;
 	
 	public Frame(Database db) {
 		super("takeyourcar database");
 		database = db;
-		setSize(800, 400);
+		setSize(900, 400);
 		setLocation(350, 100);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		//setResizable(false);
+		inizializzaCombo();
 		JPanel body = createBody();
 		add(body);
+	}
+	
+	public void inizializzaCombo() {
+		combo = new JComboBox<Query>();
+		ArrayList<Query> lista = database.getListaQuery();
+		
+		for (Query q : lista)
+			combo.addItem(q);
+		
+		/*comboDipendenti.addItem(database.searchQuery("Tutti i dipendenti").getName());
+		
+		comboClienti.addItem(database.searchQuery("Tutti i clienti").getName());
+		comboClienti.addItem(database.searchQuery("nome, cognome e CF dei clienti che hanno effettuato un pagamento di importo maggiore del più alto premio assicurativo").getName());
+		
+		comboVeicoli.addItem(database.searchQuery("Tutti i veicoli").getName());
+		comboVeicoli.addItem(database.searchQuery("targa e nome modello dei veicoli che sono stati noleggiati dai clienti più giovani del più vecchio dipendente ceh gestisce il deposito con il maggior numero di veicoli").getName());
+		
+		comboAutovetture.addItem(database.searchQuery("Tutte le autovetture").getName());
+		comboMotocicli.addItem(database.searchQuery("Tutti i motocicli").getName());
+		comboDitte.addItem(database.searchQuery("Tutte le ditte").getName());
+		comboAbbonati.addItem(database.searchQuery("Tutti gli abbonati").getName());
+		comboOccasionali.addItem(database.searchQuery("Tutti gli occasionali").getName());
+		comboPagamenti.addItem(database.searchQuery("Tutti i pagamenti").getName());
+		
+		comboViaggi.addItem(database.searchQuery("Tutti i viaggi").getName());
+		comboViaggi.addItem(database.searchQuery("Viaggi del primo giorno del mese").getName());
+		
+		comboAssicurazioni.addItem(database.searchQuery("Tutte le assicurazioni").getName());
+		comboRecapiti.addItem(database.searchQuery("Tutti i recapiti").getName());*/
 	}
 	
 	public JPanel createBody() {
 		JPanel body = new JPanel();
 		body.setLayout(new BorderLayout());
-		JTabbedPane pannello = new JTabbedPane();
-		pannello.add("Dipendenti", creaTabella(TUTTIIDIPENDENTI));
-		pannello.add("Clienti", creaTabella(TUTTIICLIENTI));
-		pannello.add("Veicoli", creaTabella(TUTTIIVEICOLI));
-		pannello.add("Autovetture", creaTabella(TUTTELEAUTOVETTURE));
-		pannello.add("Motocicli", creaTabella(TUTTIIMOTOCICLI));
-		pannello.add("Ditte manutenzione", creaTabella(TUTTELEDITTE));
-		pannello.add("Clienti", creaTabella(TUTTIICLIENTI));
-		pannello.add("Abbonati", creaTabella(TUTTIGLIABBONATI));
-		pannello.add("Occasionali", creaTabella(TUTTIGLIOCCASONALI));
-		pannello.add("Pagamenti", creaTabella(TUTTIIPAGAMENTI));
-		pannello.add("Viaggi", creaTabella(TUTTIIVIAGGI));
-		pannello.add("Assicurazioni", creaTabella(TUTTELEASSICURAZIONI));
-		pannello.add("Recapiti", creaTabella(TUTTIIRECAPITI));
+		JPanel p = new JPanel();
+		JButton button = new JButton("Esegui");
 		
-		body.add(pannello, BorderLayout.CENTER);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				body.removeAll();
+				body.repaint();
+				body.add(creaTabella(database.searchQuery(combo.getSelectedItem().toString()).getQuery()));
+				body.revalidate();
+				body.repaint();
+			}
+		});
+		
+		p.add(combo);
+		p.add(button);
+		body.add(p, BorderLayout.CENTER);
 		return body;
 	}
 	
@@ -99,7 +123,23 @@ public class Frame extends JFrame {
 			
 			JTable tabella = new JTable(data, intestazione);
 			JScrollPane scroll = new JScrollPane(tabella);
-			panel.add(scroll, BorderLayout.NORTH);
+			JPanel p = new JPanel();
+			JButton button = new JButton("Esegui");
+			
+			button.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					panel.removeAll();
+					panel.repaint();
+					panel.add(creaTabella(database.searchQuery(combo.getSelectedItem().toString()).getQuery()));
+					panel.revalidate();
+					panel.repaint();
+				}
+			});
+			
+			p.add(combo);
+			p.add(button);
+			panel.add(p, BorderLayout.NORTH);
+			panel.add(scroll, BorderLayout.CENTER);
 			rs.close();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRORE ESECUZIONE QUERY", JOptionPane.ERROR_MESSAGE);

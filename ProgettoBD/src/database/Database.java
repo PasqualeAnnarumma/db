@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import query.Query;
 
 public class Database {
 	
@@ -14,9 +17,11 @@ public class Database {
 	Statement statement;
 	ResultSet result;
 	String stringaConnessione;
+	ArrayList<Query> listaQuery;
 	
 	public Database(String stringConnection) {
-		stringaConnessione = stringConnection;	
+		stringaConnessione = stringConnection;
+		listaQuery = new ArrayList<Query>();
 	}
 	
 	public void connetti() throws SQLException{
@@ -46,4 +51,18 @@ public class Database {
 		connessione.close();
 	}
 	
+	public void addQuery(Query query) {
+		listaQuery.add(query);
+	}
+	
+	public Query searchQuery(String nome) {
+		for (Query q : listaQuery)
+			if (q.getName().equals(nome)) return q;
+		
+		return null;
+	}
+	
+	public ArrayList<Query> getListaQuery() {
+		return listaQuery;
+	}
 }
