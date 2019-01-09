@@ -84,19 +84,7 @@ public class Starter {
 				"    WHERE A.VeicoloAssicurato = V.Targa;\r\n" + 
 				"\r\n" + 
 				"");
-		/*Query q24 = new Query("", "");
-		Query q25 = new Query("", "");
-		Query q26 = new Query("", "");
-		Query q27 = new Query("", "");
-		Query q28 = new Query("", "");
-		Query q29 = new Query("", "");
-		Query q30 = new Query("", "");
-		Query q31 = new Query("", "");
-		Query q32 = new Query("", "");
-		Query q33 = new Query("", "");
-		Query q34 = new Query("", "");
-		Query q35 = new Query("", "");
-		Query q36 = new Query("", "");*/
+		Query q24 = new Query("Tutti i depositi", "SELECT * FROM DEPOSITO");
 		
 		db.addQuery(q1);
 		db.addQuery(q2);
@@ -121,50 +109,16 @@ public class Starter {
 		db.addQuery(q21);
 		db.addQuery(q22);
 		db.addQuery(q23);
-		/*db.addQuery(q24);
-		db.addQuery(q25);
-		db.addQuery(q26);
-		db.addQuery(q27);
-		db.addQuery(q28);
-		db.addQuery(q29);
-		db.addQuery(q30);
-		db.addQuery(q31);
-		db.addQuery(q32);
-		db.addQuery(q33);
-		db.addQuery(q34);
-		db.addQuery(q35);
-		db.addQuery(q36);*/
+		db.addQuery(q24);
+		
+		try {
+			db.aggiungi("DEPOSITO", "Codice", "Comune", "Regione", "Indirizzo", "Capienza", "NumeroVeicoli", "5", "Agnano", "Campania", "Via agno 5", "23450", "20000");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		
 		Frame frame = new Frame(db);
 		frame.setVisible(true);
-		/*try {
-			db.connetti();
-			
-			res = db.eseguiQuery("SELECT V.Targa, V.Modello, timestampdiff(year, C.DataNascita, curdate()) AS Età\r\n" + 
-					"	FROM VEICOLO AS V NATURAL JOIN NOLEGGIATO_DA AS N NATURAL JOIN CLIENTE AS C\r\n" + 
-					"    WHERE timestampdiff(year, C.DataNascita, curdate()) < (SELECT MAX(timestampdiff(year, D.DataNascita, curdate()))\r\n" + 
-					"															   FROM DIPENDENTE AS D NATURAL JOIN DEPOSITO AS DEP\r\n" + 
-					"															   WHERE D.Gestisce = DEP.Codice && DEP.NumeroVeicoli = (SELECT MAX(D.NumeroVeicoli)\r\n" + 
-					"																														 FROM DEPOSITO AS D));");
-			System.out.println("Tutti i Depositi");
-			System.out.println("--- Inizio ---");
-			while (res.next())
-				System.out.println(res.getString("Targa") + ", " + res.getString("Modello") + ", " + res.getString("Età"));
-			System.out.println("--- Fine ---\n");
-			
-			res = db.eseguiQuery("SELECT * FROM CLIENTE");
-			System.out.println("Tutti i Clienti");
-			System.out.println("--- Inizio ---");
-			while (res.next())
-				System.out.println(res.getString("CF") + ", " + res.getString("Nome") + ", " + res.getString("Cognome") + " , "
-								 + res.getString("LuogoNascita") + ", " + res.getInt("Telefono") + ", " + res.getInt("DataNascita")
-								 + res.getString("N_CartadiCredito"));
-			System.out.println("--- Fine ---\n");
-			
-			db.chiudiConnessione();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRORE", JOptionPane.ERROR_MESSAGE);
-		}*/
 	}
 
 }

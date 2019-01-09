@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -41,27 +44,6 @@ public class Frame extends JFrame {
 		
 		for (Query q : lista)
 			combo.addItem(q);
-		
-		/*comboDipendenti.addItem(database.searchQuery("Tutti i dipendenti").getName());
-		
-		comboClienti.addItem(database.searchQuery("Tutti i clienti").getName());
-		comboClienti.addItem(database.searchQuery("nome, cognome e CF dei clienti che hanno effettuato un pagamento di importo maggiore del più alto premio assicurativo").getName());
-		
-		comboVeicoli.addItem(database.searchQuery("Tutti i veicoli").getName());
-		comboVeicoli.addItem(database.searchQuery("targa e nome modello dei veicoli che sono stati noleggiati dai clienti più giovani del più vecchio dipendente ceh gestisce il deposito con il maggior numero di veicoli").getName());
-		
-		comboAutovetture.addItem(database.searchQuery("Tutte le autovetture").getName());
-		comboMotocicli.addItem(database.searchQuery("Tutti i motocicli").getName());
-		comboDitte.addItem(database.searchQuery("Tutte le ditte").getName());
-		comboAbbonati.addItem(database.searchQuery("Tutti gli abbonati").getName());
-		comboOccasionali.addItem(database.searchQuery("Tutti gli occasionali").getName());
-		comboPagamenti.addItem(database.searchQuery("Tutti i pagamenti").getName());
-		
-		comboViaggi.addItem(database.searchQuery("Tutti i viaggi").getName());
-		comboViaggi.addItem(database.searchQuery("Viaggi del primo giorno del mese").getName());
-		
-		comboAssicurazioni.addItem(database.searchQuery("Tutte le assicurazioni").getName());
-		comboRecapiti.addItem(database.searchQuery("Tutti i recapiti").getName());*/
 	}
 	
 	public JPanel createBody() {
@@ -82,6 +64,43 @@ public class Frame extends JFrame {
 		
 		p.add(combo);
 		p.add(button);
+		JMenuBar menu = new JMenuBar();
+		JMenu file = new JMenu("File");
+		JMenu aggiungi = new JMenu("Aggiungi");
+		JMenuItem item = new JMenuItem("Aggiungi deposito");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi cliente");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi dipendente");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi veicolo");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi autovettura");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi motociclo");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi relazione noleggiato");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi ditta manutenzione");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi manutiene");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi assicurazione");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi viaggio");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi abbonato");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi occasionale");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi pagamento");
+		aggiungi.add(item);
+		item = new JMenuItem("Aggiungi recapito");
+		aggiungi.add(item);
+		menu.add(file);
+		file.add(aggiungi);
+		aggiungi.add(item);
+		body.add(menu, BorderLayout.NORTH);
 		body.add(p, BorderLayout.CENTER);
 		return body;
 	}
