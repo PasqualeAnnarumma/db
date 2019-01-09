@@ -40,15 +40,9 @@ public class Database {
 		prepared.executeUpdate();
 	}*/
 	
-	public ResultSet tuttiIDespositi() throws SQLException {
-		return eseguiQuery("SELECT * FROM DEPOSITO");
-	}
-	
-	public ResultSet tuttiIClienti() throws SQLException {
-		return eseguiQuery("SELECT * FROM CLIENTE");
-	}
-	
 	public void chiudiConnessione() throws SQLException {
+		result.close();
+		statement.close();
 		connessione.close();
 	}
 	

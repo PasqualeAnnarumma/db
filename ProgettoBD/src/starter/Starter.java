@@ -1,12 +1,12 @@
 package starter;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
 import database.Database;
+import interfacciaGrafica.Frame;
 
 public class Starter {
 
@@ -23,8 +23,15 @@ public class Starter {
 		}
 		
 		Database db = new Database("jdbc:mysql://localhost:3306/" + nomedb + "?user=" + user + "&password=" + pass + "&autoReconnect=true&useSSL=false");
-		ResultSet res;
 		try {
+			db.connetti();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "ERRORE CONNESSIONE", e.getMessage(), JOptionPane.ERROR_MESSAGE);
+		}
+		
+		Frame frame = new Frame(db);
+		frame.setVisible(true);
+		/*try {
 			db.connetti();
 			
 			res = db.eseguiQuery("SELECT V.Targa, V.Modello, timestampdiff(year, C.DataNascita, curdate()) AS Età\r\n" + 
@@ -39,7 +46,7 @@ public class Starter {
 				System.out.println(res.getString("Targa") + ", " + res.getString("Modello") + ", " + res.getString("Età"));
 			System.out.println("--- Fine ---\n");
 			
-			res = db.tuttiIClienti();
+			res = db.eseguiQuery("SELECT * FROM CLIENTE");
 			System.out.println("Tutti i Clienti");
 			System.out.println("--- Inizio ---");
 			while (res.next())
@@ -51,8 +58,7 @@ public class Starter {
 			db.chiudiConnessione();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "ERRORE", JOptionPane.ERROR_MESSAGE);
-		}
-		System.exit(0);
+		}*/
 	}
 
 }
