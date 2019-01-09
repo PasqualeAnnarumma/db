@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import database.Database;
-import interfacciaGrafica.Frame;
+import interfacceGrafiche.Frame;
 import query.Query;
 
 public class Starter {
@@ -111,11 +111,12 @@ public class Starter {
 		db.addQuery(q23);
 		db.addQuery(q24);
 		
-		try {
+		/*try {
 			db.aggiungi("DEPOSITO", "Codice", "Comune", "Regione", "Indirizzo", "Capienza", "NumeroVeicoli", "5", "Agnano", "Campania", "Via agno 5", "23450", "20000");
+			db.aggiungi("DIPENDENTE", "CF", "Nome", "Cognome", "via", "Numero", "dataNascita", "Gestisce", "FFEDRG56C87T345S", "Pino", "Pinetto", "Via dei pini", "5", "1970/01/09", "5");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}
+		}*/
 		
 		Frame frame = new Frame(db);
 		frame.setVisible(true);

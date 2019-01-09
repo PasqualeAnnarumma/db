@@ -50,7 +50,7 @@ public class Database {
 		Object[] parametri = new Object[lista.length/2];
 		for (int j = 0; i < lista.length; i++, j++)
 			parametri[j] = lista[i];
-			
+		
 		prepared = connessione.prepareStatement(conn);
 		set(parametri);
 	}
