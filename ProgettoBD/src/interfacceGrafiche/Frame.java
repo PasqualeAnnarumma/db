@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import database.Database;
 import query.Query;
+import starter.FrameAbbonato;
+import starter.FrameAssicurazione;
 
 public class Frame extends JFrame {
 	
@@ -76,7 +78,7 @@ public class Frame extends JFrame {
 		JMenu aggiungi = new JMenu("Aggiungi");
 		JMenuItem item = new JMenuItem("Aggiungi deposito");
 		aggiungi.add(item);
-		item = new JMenuItem("Aggiungi cliente");
+		item = new JMenuItem("Aggiungi cliente");		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi dipendente");
 		aggiungi.add(item);
@@ -93,10 +95,26 @@ public class Frame extends JFrame {
 		item = new JMenuItem("Aggiungi manutiene");
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi assicurazione");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameAssicurazione frame = new FrameAssicurazione(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi viaggio");
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi abbonato");
+		
+		item.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrameAbbonato frame = new FrameAbbonato(database);
+				frame.setVisible(true);
+			}
+		});
+		
 		aggiungi.add(item);
 		item = new JMenuItem("Aggiungi occasionale");
 		aggiungi.add(item);
