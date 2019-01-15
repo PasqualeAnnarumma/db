@@ -15,7 +15,7 @@ public class Starter {
 	{
 		String nomedb = "takeyourcar";
 		String user = "root";
-		String pass = "n4pl3s1997";
+		String pass = "";
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			Class.forName("com.mysql.jdbc.Driver");
@@ -73,17 +73,6 @@ public class Starter {
 		Query q20 = new Query("seleziona nome e cognome dei clienti che hanno effettuato pagamenti maggiori o uguali di 100€", "SELECT C.Nome, C.Cognome, C.CF, P.Importo\r\n" + 
 				"	FROM CLIENTE AS C NATURAL JOIN PAGAMENTO AS P\r\n" + 
 				"    WHERE C.CF = P.Cliente && P.Importo >= 100;");
-		Query q21 = new Query("stampa clienti abbonati", "SELECT *\r\n" + 
-				"    FROM ABBONATO AS A NATURAL JOIN CLIENTE AS C\r\n" + 
-				"    WHERE A.CF = C.CF;");
-		Query q22 = new Query("Stampa lista clienti occasionali", "SELECT *\r\n" + 
-				"	FROM OCCASIONALE AS O NATURAL JOIN CLIENTE AS C\r\n" + 
-				"    WHERE O.CF = C.CF;");
-		Query q23 = new Query("stampa veicoli assicurati", "SELECT *\r\n" + 
-				"	FROM VEICOLO AS V NATURAL JOIN ASSICURAZIONE AS A\r\n" + 
-				"    WHERE A.VeicoloAssicurato = V.Targa;\r\n" + 
-				"\r\n" + 
-				"");
 		Query q24 = new Query("Tutti i depositi", "SELECT * FROM DEPOSITO");
 		Query q25 = new Query("Relazioni manutiene", "SELECT * FROM MANUTIENE");
 		Query q26 = new Query("Tutti i noleggi", "SELECT * FROM NOLEGGIATO_DA");
@@ -108,9 +97,6 @@ public class Starter {
 		db.addQuery(q18);
 		db.addQuery(q19);
 		db.addQuery(q20);
-		db.addQuery(q21);
-		db.addQuery(q22);
-		db.addQuery(q23);
 		db.addQuery(q24);
 		db.addQuery(q25);
 		db.addQuery(q26);
